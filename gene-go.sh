@@ -2,3 +2,4 @@
 
 cd src
 protoc --go_out=../../monotrade-platform-go/api/message market.proto
+protoc --go_out=../../monotrade-platform-go/api/message trade.proto

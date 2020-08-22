@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package message;
+option go_package = ".;message";
+
+message Trade {
+  string symbol = 1;
+  int32 aaa = 2;
+  int32 bbb = 3;
+}
+
+message Order {
+  string symbol = 1;
+  int32 aaa = 2;
+  int32 bbb = 3;
+}
