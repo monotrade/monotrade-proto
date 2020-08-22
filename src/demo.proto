@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package demo;
-option go_package = "src;demo";
+option go_package = ".;demo";
 
 message SearchRequest {
   string query = 1;

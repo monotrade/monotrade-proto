@@ -1,4 +1,4 @@
 # go get -v  github.com/golang/protobuf/protoc-gen-go
 
-mkdir gen-go
-protoc --go_out=./gen-go src/demo.proto
+cd src
+protoc --go_out=../../monotrade-platform-go/api/message market.proto
