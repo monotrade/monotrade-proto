@@ -33,7 +33,7 @@ message Tick {
   // limit_down: float = 0
   float volume = 21;		//累计成交量（股）
   float amount = 22; 		//累计成交额
-  
+
   // repeated float askPrices = 0.0;
   // repeated float askVolumes = 0;
 
@@ -67,6 +67,27 @@ message Tick {
 
 message Bar {
   string symbol = 1;
+  string datetime = 2;
+  string PERIOD ???
+  
   int32 aaa = 2;
   int32 bbb = 3;
+
+  /* vnpy
+  symbol: str
+    exchange: Exchange
+    datetime: datetime
+
+    interval: Interval = None
+    volume: float = 0
+    open_interest: float = 0
+    open_price: float = 0
+    high_price: float = 0
+    low_price: float = 0
+    close_price: float = 0
+   */
+
+   /* joinQuant
+   datetime  open	close	high	low	volume	money
+   */
 }
