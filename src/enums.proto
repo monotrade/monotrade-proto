@@ -1,13 +1,14 @@
-syntax = "proto3";//指定版本信息，不指定会报错
+syntax = "proto3";  //指定版本信息，不指定会报错
 
 package monotrade; //package声明符
+option go_package = ".;monotrade";
 
 enum SecurityType {
     STOCK = 0;  //股票,   EQUITY(vnpy)
     FUND = 1;   // 基金
     INDEX = 2; // 指数
     FUTURES = 3; // 期货
-    OPTION = 4; //期权    options(joinQuant)
+    OPTIONS = 4; //期权
     ETF = 5;    // ETF
     
     

@@ -1,2 +1,4 @@
 #mkdir gen-python
-protoc --python_out=./gen-python src/*
+cd src
+protoc --python_out=../gen-python *
+cd ..
