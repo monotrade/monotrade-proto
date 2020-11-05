@@ -1,15 +1,73 @@
 syntax = "proto3";
 
-package monotrade;
+package monotrade.message;
 option go_package = ".;monotrade";
 
-message Trade {
+import "enums.proto";
+
+message OrderRequest {
   string symbol = 1;
-  int32 aaa = 2;
-  int32 bbb = 3;
+  monotrade.message.Direction direction = 2;
+  monotrade.message.Offset offset = 3;
+  monotrade.message.OrderType type = 4;
+  float price = 5;
+  float volume = 6; 
+
+
+//     reference: str = ""
+
 }
 
+
+
 message Order {
+	string gatewayName = 99;
+
+	string symbol = 1;
+  	monotrade.message.Direction direction = 2;
+  	monotrade.message.Offset offset = 3;
+	monotrade.message.OrderType type = 4;
+	float price = 5;
+	float volume = 6; 
+
+
+//     orderid: str
+//     traded: float = 0
+//     status: Status = Status.SUBMITTING
+//     datetime: datetime = None
+
+
+//     def is_active(self) -> bool:
+//         """
+//         Check if the order is active.
+//         """
+//         if self.status in ACTIVE_STATUSES:
+//             return True
+//         else:
+//             return False
+
+ 
+}
+
+//import "google/protobuf/descriptor.proto";
+// message mymessage
+// {
+// 	int32 x = 10;
+// };
+
+// extend google.protobuf.MessageOptions {
+// 	mymessage mymsg = 51234;
+// }
+
+// message usemymessage
+// {
+// 	option(mymsg) = {x : 1000 };
+// 	int32 xxx = 11;
+// };
+
+
+
+message Trade {
   string symbol = 1;
   int32 aaa = 2;
   int32 bbb = 3;

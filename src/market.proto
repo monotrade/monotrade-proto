@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package monotrade;
+package monotrade.message;
 option go_package = ".;monotrade";
 
 import "enums.proto";
@@ -9,7 +9,7 @@ import "enums.proto";
 
 message Security {
 	string symbol = 1;  // full symbol with code and exchange
-	monotrade.SecurityType type = 2;
+	monotrade.message.SecurityType type = 2;
 	string display_name = 3;	// 中文名称
 	string name = 4;	// 代号
 	string start_date = 5;	// yyyy-mm-dd
@@ -68,10 +68,9 @@ message Tick {
 message Bar {
   string symbol = 1;
   string datetime = 2;
-  string PERIOD ???
+  //string PERIOD ???
   
-  int32 aaa = 2;
-  int32 bbb = 3;
+  
 
   /* vnpy
   symbol: str

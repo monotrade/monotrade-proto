@@ -1,6 +1,7 @@
 syntax = "proto3";  //指定版本信息，不指定会报错
 
-package monotrade; //package声明符
+package monotrade.message;
+
 option go_package = ".;monotrade";
 
 enum SecurityType {
@@ -62,6 +63,32 @@ enum Exchange {
     */
 }
 
+
+//     Direction of order/trade/position.
+
+enum Direction {
+    LONG = 0;
+    SHORT = 1;
+    //     NET = "净"
+}
+
+//     Offset of order/trade.
+enum Offset {
+    OPEN = 0;           //     OPEN = "开"
+    CLOSE = 1;          //     CLOSE = "平"
+    CLOSETODAY = 2;     //     CLOSETODAY = "平今"
+    CLOSEYESTERDAY = 3; //     CLOSEYESTERDAY = "平昨"
+}
+
+
+enum OrderType {
+    LIMIT = 0;  //"限价"
+    MARKET = 1;  //"市价"
+    STOP = 2;  //"STOP"
+    FAK = 3;  //"FAK"
+    FOK = 4;  //"FOK"
+    //RFQ = 0;  //"询价"
+}
+    
     
 
-    
