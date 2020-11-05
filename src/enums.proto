@@ -49,6 +49,7 @@ enum Exchange {
     DCE = 5;   //Dalian Commodity Exchange.  XDCE(JoinQuant)
     INE = 6;  // Shanghai International Energy Exchange.  XINE(JoinQuant)
     
+    NEEQ = 10; //
     
     LOCAL = 99; // For local generated data
 
