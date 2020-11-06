@@ -75,3 +75,24 @@ message Trade {
     
     string gatewayName = 99;
 }
+
+
+//Positon data is used for tracking each individual position holding.
+message Position {
+	string symbol = 1;
+	monotrade.message.Direction direction = 2;
+	float volume = 3;
+	float price = 4;			//均价
+	float frozenVolume = 5;
+	float profitAndLoss = 6;	//盈亏
+	float yesterdayVolume = 7;	// 昨仓
+	string gatewayName = 99;
+}
+
+//Account data contains information about balance, frozen and available.
+message Account {
+	string accountID = 1;
+	float balance = 2;		// 余额
+	float frozen =3;		// 冻结
+}
+
