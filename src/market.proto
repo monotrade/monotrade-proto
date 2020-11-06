@@ -3,8 +3,11 @@ syntax = "proto3";
 package monotrade.message;
 option go_package = ".;monotrade";
 
-import "enums.proto";
+import "google/protobuf/duration.proto";
+import public "google/protobuf/timestamp.proto";
 
+import "enums.proto";
+  
 
 
 message Security {
@@ -20,7 +23,7 @@ message Security {
 
 message Tick {
   string symbol = 1;
-  string datetime = 2;
+  google.protobuf.Timestamp time = 2;
   //name: str = ""
 
   float openPrice = 10;
@@ -67,26 +70,19 @@ message Tick {
 
 message Bar {
   string symbol = 1;
-  string datetime = 2;
-  //string PERIOD ???
-  
-  
+  google.protobuf.Duration interval = 2;
+
+  google.protobuf.Timestamp time = 3;
+
+  float openPrice = 21;
+  float highPrice = 22;
+  float lowPrice = 23;
+  float closePrice = 24;
+  float volume = 25;
+  float amount = 26;
+
 
   /* vnpy
-  symbol: str
-    exchange: Exchange
-    datetime: datetime
-
-    interval: Interval = None
-    volume: float = 0
     open_interest: float = 0
-    open_price: float = 0
-    high_price: float = 0
-    low_price: float = 0
-    close_price: float = 0
-   */
-
-   /* joinQuant
-   datetime  open	close	high	low	volume	money
    */
 }
