@@ -90,6 +90,7 @@ message Bar {
 //Contract data contains basic information about each contract traded.
 message Contract {
   string symbol = 1;
+  string name = 2;
 }
 
 
@@ -98,9 +99,8 @@ message Contract {
 //     
 //     """
 
-//     symbol: str
-//     exchange: Exchange
-//     name: str
+
+
 //     product: Product
 //     size: int
 //     pricetick: float
