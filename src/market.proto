@@ -6,8 +6,76 @@ option go_package = ".;monotrade";
 import "google/protobuf/duration.proto";
 import public "google/protobuf/timestamp.proto";
 
-import "enums.proto";
+
   
+
+
+
+enum SecurityType {
+    STOCK = 0;  //股票,   EQUITY(vnpy)
+    FUND = 1;   // 基金
+    INDEX = 2; // 指数
+    FUTURES = 3; // 期货
+    OPTIONS = 4; //期权
+    ETF = 5;    // ETF
+    
+    
+    
+    SPREAD = 80;  // 价差
+    
+    /* others in vnpy
+    FOREX = "外汇"
+    SPOT = "现货"
+    BOND = "债券"
+    WARRANT = "权证"
+
+    * others in joinQuant
+     lof'
+     fja'
+     fjb'
+     open_fund'
+     bond_fund'
+     stock_fund'
+     QDII_fund'
+     money_market_fund'
+     mixture_fund'。
+    */
+    
+}
+
+ 
+ 
+
+enum Exchange {
+    // 以百度百科中的缩写为准
+    //proto3版本中，首成员必须为0，成员不应有相同的值
+
+    SSE = 0;   //Shanghai Stock Exchange. XSHG(joinQuant)
+    SZSE = 1;  //Shenzhen Stock Exchange. XSHE(JoinQuant)
+    CFFEX = 2; //China Financial Futures Exchange. CCFX(JoinQuant)
+    SHFE = 3;  //Shanghai Futures Exchange. XSGE(JoinQuant)
+    CZCE = 4;  //Zhengzhou Commodity Exchange.  XZCE(JoinQuant)
+    DCE = 5;   //Dalian Commodity Exchange.  XDCE(JoinQuant)
+    INE = 6;  // Shanghai International Energy Exchange.  XINE(JoinQuant)
+    
+    NEEQ = 10; //
+    
+    LOCAL = 99; // For local generated data
+
+    /* others in vnpy
+    # Chinese
+    
+    SGE = "SGE"             # Shanghai Gold Exchange
+    WXE = "WXE"             # Wuxi Steel Exchange
+    CFETS = "CFETS"         # China Foreign Exchange Trade System
+    */
+}
+
+
+
+
+
+
 
 
 message Security {
@@ -15,11 +83,26 @@ message Security {
 	monotrade.message.SecurityType type = 2;
 	string display_name = 3;	// 中文名称
 	string name = 4;	// 代号
-	string start_date = 5;	// yyyy-mm-dd
-	string end_date = 6;	// yyyy-mm-dd
+	google.protobuf.Timestamp start_date = 5;	// yyyy-mm-dd
+	google.protobuf.Timestamp end_date = 6;	// yyyy-mm-dd
+
+  //     product: Product
+//     size: int
+//     pricetick: double
+
+//     min_volume: double = 1           # minimum trading volume of the contract
+//     stop_supported: bool = False    # whether server supports stop order
+//     net_position: bool = False      # whether gateway uses net position volume
+//     history_data: bool = False      # whether gateway provides bar history data
+
+//     option_strike: double = 0
+//     option_underlying: str = ""     # vt_symbol of underlying contract
+//     option_type: OptionType = None
+//     option_expiry: datetime = None
+//     option_portfolio: str = ""
+//     option_index: str = ""          # for identifying options with same strike price
+
 }
-
-
 
 message Tick {
   string symbol = 1;
@@ -39,30 +122,35 @@ message Tick {
 
   // repeated float askPrices = 0.0;
   // repeated float askVolumes = 0;
+  repeated float bidPrices = 30;
+  repeated float bidVolumes = 40;
 
-  float bidPrice1 = 31;
-  float bidPrice2 = 32;
-  float bidPrice3 = 33;
-  float bidPrice4 = 34;
-  float bidPrice5 = 35;
+  repeated float askPrices = 50;
+  repeated float askVolumes = 60;
 
-  float bidVolume1 = 41;
-  float bidVolume2 = 42;
-  float bidVolume3 = 43;
-  float bidVolume4 = 44;
-  float bidVolume5 = 45;
+  // float bidPrice1 = 31;
+  // float bidPrice2 = 32;
+  // float bidPrice3 = 33;
+  // float bidPrice4 = 34;
+  // float bidPrice5 = 35;
 
-  float askPrice1 = 51;
-  float askPrice2 = 52;
-  float askPrice3 = 53;
-  float askPrice4 = 54;
-  float askPrice5 = 55;
+  // float bidVolume1 = 41;
+  // float bidVolume2 = 42;
+  // float bidVolume3 = 43;
+  // float bidVolume4 = 44;
+  // float bidVolume5 = 45;
 
-  float askVolume1 = 61;
-  float askVolume2 = 62;
-  float askVolume3 = 63;
-  float askVolume4 = 64;
-  float askVolume5 = 65;
+  // float askPrice1 = 51;
+  // float askPrice2 = 52;
+  // float askPrice3 = 53;
+  // float askPrice4 = 54;
+  // float askPrice5 = 55;
+
+  // float askVolume1 = 61;
+  // float askVolume2 = 62;
+  // float askVolume3 = 63;
+  // float askVolume4 = 64;
+  // float askVolume5 = 65;
 
 
 }
