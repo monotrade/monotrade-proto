@@ -199,7 +199,8 @@ message OrderRequest {
 message Order {
 	string gatewayName = 99;
 
-	string symbol = 1;
+    string symbol = 1;
+    //2: TradeSide side, 
   	monotrade.message.Direction direction = 2;
   	monotrade.message.Offset offset = 3;
 	monotrade.message.PriceType type = 4;
@@ -238,7 +239,7 @@ message Trade {
 	string symbol = 1;
   	string orderID = 2;
   	string tradeID = 3;
-
+    //4: TradeSide side, 
   	monotrade.message.Direction direction = 4;
   	monotrade.message.Offset offset = 5;
 	monotrade.message.PriceType type = 6;
@@ -270,3 +271,6 @@ message Account {
 	float frozen =3;		// 冻结
 }
 
+message Portfolio {
+    
+}

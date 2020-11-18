@@ -5,6 +5,26 @@ syntax = "proto3";
 
 package monotrade;
 
+/**
+ *
+ */
+ 
+ enum OrderErrorCode {
+    UNKNOWN = 0;
+    UNSUPPORTED_PRICE_TYPE = 1;
+    BAD_DATA_FORMAT = 2;
+  }
+  
+
+
+
+  enum RiskLevel {
+    NORMAL = 0;
+    WARNING = 1;
+    FORBIDDEN = 2;
+  }
+  
+
 service Gateway {
     //rpc Connect(Any) returns (SearchResponse);
 }
