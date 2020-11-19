@@ -167,12 +167,12 @@ enum PriceType {
 
 
 //     Offset of order/trade.
-enum Offset {
-    OPEN = 0;           //     OPEN = "开"
-    CLOSE = 1;          //     CLOSE = "平"
-    CLOSETODAY = 2;     //     CLOSETODAY = "平今"
-    CLOSEYESTERDAY = 3; //     CLOSEYESTERDAY = "平昨"
-}
+//enum Offset {
+//    OPEN = 0;           //     OPEN = "开"
+//    CLOSE = 1;          //     CLOSE = "平"
+//    CLOSETODAY = 2;     //     CLOSETODAY = "平今"
+//    CLOSEYESTERDAY = 3; //     CLOSEYESTERDAY = "平昨"
+//}
 
 
 
@@ -183,15 +183,15 @@ enum Offset {
 
 message OrderRequest {
   string symbol = 1;
-  monotrade.message.Direction direction = 2;
-  monotrade.message.Offset offset = 3;
-  monotrade.message.PriceType type = 4;
+  monotrade.message.TradeSide side = 2;
+  //monotrade.message.Offset offset = 3;
+  monotrade.message.PriceType priceType = 3;
+  monotrade.message.TradeType tradeType = 4; // 普通，套保，套利，备兑
   float price = 5;
   float volume = 6; 
 
 
   string reference = 99;
-
 }
 
 
@@ -201,8 +201,8 @@ message Order {
 
     string symbol = 1;
     //2: TradeSide side, 
-  	monotrade.message.Direction direction = 2;
-  	monotrade.message.Offset offset = 3;
+  	monotrade.message.TradeSide side = 2;
+
 	monotrade.message.PriceType type = 4;
 	float price = 5;
 	float volume = 6; 
@@ -239,9 +239,9 @@ message Trade {
 	string symbol = 1;
   	string orderID = 2;
   	string tradeID = 3;
-    //4: TradeSide side, 
-  	monotrade.message.Direction direction = 4;
-  	monotrade.message.Offset offset = 5;
+    monotrade.message.TradeSide side = 4; 
+  	//monotrade.message.Direction direction = 4;
+  	//monotrade.message.Offset offset = 5;
 	monotrade.message.PriceType type = 6;
 
 	google.protobuf.Timestamp time = 11;
