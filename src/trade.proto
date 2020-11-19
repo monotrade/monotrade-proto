@@ -190,7 +190,7 @@ message OrderRequest {
   float volume = 6; 
 
 
-//     reference: str = ""
+  string reference = 99;
 
 }
 
