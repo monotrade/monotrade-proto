@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "trade.proto";
+
+package monotrade.command;
+
+
+
+
+message SendOrderCommand {
+    string symbol = 1;
+    monotrade.message.TradeSide side = 2;
+    //monotrade.message.Offset offset = 3;
+    monotrade.message.PriceType priceType = 3;
+    monotrade.message.TradeType tradeType = 4; // 普通，套保，套利，备兑
+    float price = 5;
+    float volume = 6; 
+  
+  
+    string reference = 99;
+}
