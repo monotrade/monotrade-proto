@@ -7,53 +7,36 @@ option go_package = ".;monotrade";
 import public "google/protobuf/timestamp.proto";
 
 
-
-
-//     Direction of order/trade/position.
+/**
+ * Direction is applied both on Orders and on Positions.
+ */
 
 enum Direction {
-    DIR_LONG = 0;
-    DIR_SHORT = 1;
-    //     NET = "净"
+    SHORT = 0;
+    LONG = 1;
 }
-
-/*
- * TradeSide = Direction + Offset
- * 
- * 这个 TradeSide 是为了实现 Gateway 的方便
- * 在期货交易中，“平今”就是平掉今天仓位，“平仓”就是平掉历史仓位。
- * 有些交易所没有“平今”，
- * 有些交易所虽然默认平老仓，但如果今天有新开仓，则按平今收取手续费，如中金所 
- */
-enum TradeSide {
-    BUY = 0;
-    SELL = 1;
-    SHORT = 2;
-    COVER = 3;
-    SELL_TODAY =4;
-    COVER_TODAY =5;
-}
-
-
-
-
-//     Offset of order/trade.
-// enum Offset {
-//     OPEN = 0;           //     OPEN = "开"
-//     CLOSE = 1;          //     CLOSE = "平"
-//     CLOSETODAY = 2;     //     CLOSETODAY = "平今"
-//     CLOSEYESTERDAY = 3; //     CLOSEYESTERDAY = "平昨"
-// }
 
 /**
- * 交易类型。 在下单时指定交易的目的。 是否支持取决于账户的权限。
+ * Offset indicate how you want to deal with your position, and is applied in Orders.
+ * Take note that by default, CLOSE means close historic position firstly, 
+ * and some future exchanges even have no instruction type of "CLOSE_TODAY" (such as ...).
+ * But in some future exchanges, if you have a new opened position in today, 
+ * CLOSE (historic position firstly) order will be charged fees AS CLOSE_TODAY. (such as CFFEX)
+ * Use Direction combined with Offset, you can composite different order types such as BUY, SELL, SHORT, COVER, SELL_TODAY, COVER_TODAY etc.
+ */
+enum Offset {
+   OPEN = 0;           
+   CLOSE = 1;          
+   CLOSETODAY = 2;
+   // CLOSEYESTERDAY = 3;  CLOSE by default means CLOSE_YESTERDAY
+}
+
+/**
+ * Supporting of OrderPurpose is determined by Account.
  *
  * NORMAL: 现货普通交易，期货和期权的投机交易。
- *
  * HEDGING: 保值(套保)，适用于期货。期货帐号要开通相应的权限。
- *
  * ARBITRAGE: 套利，适用于期货。期货帐号要开通相应的权限。
- *
  * COVERED: 备兑交易，适用于期权。期权帐号要开通相应的权限。
  *          备兑开仓是指投资者在拥有标的证券（含当日买入）的基础上，
  *          卖出相应的认购期权（百分之百现券担保，不需现金保证金），
@@ -61,11 +44,11 @@ enum TradeSide {
  *          此时该投资者为期权的卖方，可以获得相应的权利金。 
  */
 
-enum TradeType {
-    NORMAL = 0;   	// 0x000001   普通
-    HEDGING = 1;  	// 0x000100   套保
-    ARBITRAGE = 2;	// 0x001000   套利
-    COVERED = 3; 	// 0x010000   备兑
+enum TradePurpose {
+    NORMAL = 0;     //    普通
+    HEDGING = 1;  	//    套保
+    ARBITRAGE = 2;	 //    套利
+    COVERED = 3; 	//   备兑
 }
 
 
@@ -165,18 +148,6 @@ enum PriceType {
 }
 
 
-
-//     Offset of order/trade.
-//enum Offset {
-//    OPEN = 0;           //     OPEN = "开"
-//    CLOSE = 1;          //     CLOSE = "平"
-//    CLOSETODAY = 2;     //     CLOSETODAY = "平今"
-//    CLOSEYESTERDAY = 3; //     CLOSEYESTERDAY = "平昨"
-//}
-
-
-
-    
     
 
 
@@ -186,15 +157,15 @@ enum PriceType {
 
 
 message Order {
-	string gatewayName = 99;
+	string gatewayID = 99;
 
     string symbol = 1;
-    //2: TradeSide side, 
-  	monotrade.message.TradeSide side = 2;
-
-	monotrade.message.PriceType type = 4;
-	float price = 5;
-	float volume = 6; 
+    Direction direction = 2;
+    Offset offset = 3;    
+    monotrade.message.PriceType type = 4;
+    TradePurpose purpose = 5;
+	float price = 10;
+	float volume = 11; 
 
 	string orderID = 50;
 	google.protobuf.Timestamp time = 51;
@@ -224,20 +195,24 @@ message Order {
 //Trade data contains information of a fill of an order. One order
 //can have several trade fills.
     
-message Trade {
+message Transaction {
 	string symbol = 1;
   	string orderID = 2;
-  	string tradeID = 3;
-    monotrade.message.TradeSide side = 4; 
-  	//monotrade.message.Direction direction = 4;
-  	//monotrade.message.Offset offset = 5;
-	monotrade.message.PriceType type = 6;
+    string tradeID = 3;
+      
 
-	google.protobuf.Timestamp time = 11;
-	float price = 12;
-	float volume = 13;
     
-    string gatewayName = 99;
+    Direction direction = 11;
+    Offset offset = 12;
+    monotrade.message.PriceType type = 13;
+
+    
+
+	google.protobuf.Timestamp time = 21;
+	float price = 22;
+	float volume = 23;
+    
+    string gatewayID = 99;
 }
 
 
@@ -250,7 +225,7 @@ message Position {
 	float frozenVolume = 5;
 	float profitAndLoss = 6;	//盈亏
 	float yesterdayVolume = 7;	// 昨仓
-	string gatewayName = 99;
+	string gatewayID = 99;
 }
 
 //Account data contains information about balance;frozen and available.

@@ -1,4 +1,4 @@
 syntax = "proto3";
 
-package monotrade.neeq.message;
+package monotrade.command;
 

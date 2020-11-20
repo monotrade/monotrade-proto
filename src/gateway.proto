@@ -1,8 +1,42 @@
 syntax = "proto3";
 
-package monotrade.message;
+import "trade.proto";
+
+package monotrade.command;
+
+/**
+ * All interfaces should follow the rules of CQRS.
+ * In CQRS, operations are discriminated as 'reading' (name as QUERY) and 'writing' (name as COMMAND).
+ * That means, a QUERY can only read datas while a COMMAND can update datas.
+ * For efficiency, a COMMAND should be executed asyncronisedly. But it can return a RESULT right away to 
+ * tell the sender if the COMMAND is accepted.
+ * As for QUERY, it should change any datas, and a response to a QUERY will not contain any domain knowledges. 
+ */
 
 
+/**
+ * A SendOrderCommand tell a gateway to send a order, and gateway should return OrderResult imediately.
+ */
+message SendOrderCommand {
+	string symbol = 1;
+    monotrade.message.Direction direction = 2;
+    monotrade.message.Offset offset = 3;    
+	monotrade.message.PriceType type = 4;
+	monotrade.message.TradePurpose purpose = 5;
+    float price = 6;
+    float volume = 7; 
+  
+  
+	string reference = 90;
+	string gatewayID = 99;
+}
+
+
+message CancelOrderCommand {
+    string gatewayID = 1;
+}
+
+// 命令异步执行，但要同步给一个回执？？
 
 /**
  * 下单或撤单动作的结果类型。 只用于 <href>OrderResult</href>.
