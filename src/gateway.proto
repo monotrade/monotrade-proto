@@ -4,6 +4,9 @@ import "trade.proto";
 
 package monotrade.command;
 
+
+option cc_generic_services = true;
+
 /**
  * All interfaces should follow the rules of CQRS.
  * In CQRS, operations are discriminated as 'reading' (name as QUERY) and 'writing' (name as COMMAND).
@@ -13,6 +16,16 @@ package monotrade.command;
  * As for QUERY, it should change any datas, and a response to a QUERY will not contain any domain knowledges. 
  */
 
+
+message SubscribeCommand {
+	repeated string symbol = 1;
+	string gatewayID = 99;
+}
+
+message UnSubscribeCommand {
+	repeated string symbol = 1;
+	string gatewayID = 99;
+}
 
 /**
  * A SendOrderCommand tell a gateway to send a order, and gateway should return OrderResult imediately.
@@ -33,7 +46,7 @@ message SendOrderCommand {
 
 
 message CancelOrderCommand {
-    string gatewayID = 1;
+    string gatewayID = 99;
 }
 
 // 命令异步执行，但要同步给一个回执？？
@@ -102,5 +115,11 @@ O32
 */
 
 
+}
+
+
+service GatewayService {
+	rpc SendOrder(SendOrderCommand) returns (OrderResult);
+	rpc CancelOrder(CancelOrderCommand) returns (OrderResult);
 }
 
