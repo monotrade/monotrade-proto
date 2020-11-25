@@ -34,7 +34,7 @@ enum Offset {
 /**
  * Supporting of OrderPurpose is determined by Account.
  *
- * NORMAL: 现货普通交易，期货和期权的投机交易。
+ * GENERAL: 现货普通交易，期货和期权的投机交易。
  * HEDGING: 保值(套保)，适用于期货。期货帐号要开通相应的权限。
  * ARBITRAGE: 套利，适用于期货。期货帐号要开通相应的权限。
  * COVERED: 备兑交易，适用于期权。期权帐号要开通相应的权限。

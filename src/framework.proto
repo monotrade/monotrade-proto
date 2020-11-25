@@ -3,7 +3,19 @@ syntax = "proto3";
 //import "google/protobuf/any.proto";
 
 
-package monotrade;
+package monotrade.message;
+
+message StrategyStatus {
+  string name = 1;
+  bool isRunning = 2;
+  float heartBeating = 3;
+}
+
+message GatewayStatus {
+  string name = 1;
+  bool isRunning = 2;
+  float heartBeating = 3;
+}
 
 /**
  *
@@ -19,7 +31,7 @@ package monotrade;
 
 
   enum RiskLevel {
-    NORMAL = 0;
+    NONE = 0;
     WARNING = 1;
     FORBIDDEN = 2;
   }

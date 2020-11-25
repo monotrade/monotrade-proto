@@ -17,6 +17,8 @@ option cc_generic_services = true;
  */
 
 
+
+
 message SubscribeCommand {
 	repeated string symbol = 1;
 	string gatewayID = 99;
