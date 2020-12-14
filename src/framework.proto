@@ -25,6 +25,12 @@ package monotrade;
   }
   
 
+message AddGatewayCommand {
+  string gatewayID = 1;
+  string gatewayName = 2;
+  any configuration = 3;
+}
+
 service Gateway {
     //rpc Connect(Any) returns (SearchResponse);
 }
