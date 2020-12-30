@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "trade.proto";
 
-package monotrade.command;
+package select.command;
 
 
 option cc_generic_services = true;
@@ -34,10 +34,10 @@ message UnSubscribeCommand {
  */
 message SendOrderCommand {
 	string symbol = 1;
-    monotrade.message.Direction direction = 2;
-    monotrade.message.Offset offset = 3;    
-	monotrade.message.PriceType type = 4;
-	monotrade.message.TradePurpose purpose = 5;
+    select.message.Direction direction = 2;
+    select.message.Offset offset = 3;    
+	select.message.PriceType type = 4;
+	select.message.TradePurpose purpose = 5;
     float price = 6;
     float volume = 7; 
   

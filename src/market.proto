@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package monotrade.message;
-option go_package = ".;monotrade";
+package select.message;
+option go_package = ".;select";
 
 import "google/protobuf/duration.proto";
 import public "google/protobuf/timestamp.proto";
@@ -75,7 +75,7 @@ enum Exchange {
 //Contract data contains basic information about each contract traded.
 message Security {
 	string symbol = 1;  // full symbol with code and exchange
-	monotrade.message.SecurityType type = 2;
+	select.message.SecurityType type = 2;
 	string display_name = 3;	// 中文名称
 	string name = 4;	// 代号
 	google.protobuf.Timestamp start_date = 5;	// yyyy-mm-dd

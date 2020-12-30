@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package monotrade.command;
+package select.command;
 
 message StrategyStatus {
 	string name = 1;

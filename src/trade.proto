@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package monotrade.message;
-option go_package = ".;monotrade";
+package select.message;
+option go_package = ".;select";
 
 //import "google/protobuf/duration.proto";
 import public "google/protobuf/timestamp.proto";
@@ -162,7 +162,7 @@ message Order {
     string symbol = 1;
     Direction direction = 2;
     Offset offset = 3;    
-    monotrade.message.PriceType type = 4;
+    select.message.PriceType type = 4;
     TradePurpose purpose = 5;
 	float price = 10;
 	float volume = 11; 
@@ -204,7 +204,7 @@ message Transaction {
     
     Direction direction = 11;
     Offset offset = 12;
-    monotrade.message.PriceType type = 13;
+    select.message.PriceType type = 13;
 
     
 
@@ -219,7 +219,7 @@ message Transaction {
 //Positon data is used for tracking each individual position holding.
 message Position {
 	string symbol = 1;
-	monotrade.message.Direction direction = 2;
+	select.message.Direction direction = 2;
 	float volume = 3;
 	float price = 4;			//均价
 	float frozenVolume = 5;
