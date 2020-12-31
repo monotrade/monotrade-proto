@@ -2,9 +2,7 @@ syntax = "proto3";
 
 //import "google/protobuf/any.proto";
 
-
 package select.message;
-
 
 message StrategyStatus {
   string name = 1;
