@@ -5,5 +5,5 @@ package select.command;
 message StrategyStatus {
 	string name = 1;
 	bool isRunning = 2;
-	float heartBeating = 3;
+	double heartBeating = 3;
 }

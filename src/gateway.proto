@@ -38,8 +38,8 @@ message SendOrderCommand {
     select.message.Offset offset = 3;    
 	select.message.PriceType type = 4;
 	select.message.TradePurpose purpose = 5;
-    float price = 6;
-    float volume = 7; 
+    double price = 6;
+    double volume = 7; 
   
   
 	string reference = 90;

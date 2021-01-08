@@ -164,13 +164,13 @@ message Order {
     Offset offset = 3;    
     select.message.PriceType type = 4;
     TradePurpose purpose = 5;
-	float price = 10;
-	float volume = 11; 
+	double price = 10;
+	double volume = 11; 
 
 	string orderID = 50;
 	google.protobuf.Timestamp time = 51;
-	float tradedVolume = 52;
-	float leftVolume = 53;
+	double tradedVolume = 52;
+	double leftVolume = 53;
 	
 
 	enum Status {
@@ -209,8 +209,8 @@ message Transaction {
     
 
 	google.protobuf.Timestamp time = 21;
-	float price = 22;
-	float volume = 23;
+	double price = 22;
+	double volume = 23;
     
     string gatewayID = 99;
 }
@@ -220,19 +220,19 @@ message Transaction {
 message Position {
 	string symbol = 1;
 	select.message.Direction direction = 2;
-	float volume = 3;
-	float price = 4;			//均价
-	float frozenVolume = 5;
-	float profitAndLoss = 6;	//盈亏
-	float yesterdayVolume = 7;	// 昨仓
+	double volume = 3;
+	double price = 4;			//均价
+	double frozenVolume = 5;
+	double profitAndLoss = 6;	//盈亏
+	double yesterdayVolume = 7;	// 昨仓
 	string gatewayID = 99;
 }
 
 //Account data contains information about balance;frozen and available.
 message Account {
 	string accountID = 1;
-	float balance = 2;		// 余额
-	float frozen =3;		// 冻结
+	double balance = 2;		// 余额
+	double frozen =3;		// 冻结
 }
 
 message Portfolio {
