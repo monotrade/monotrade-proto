@@ -64,12 +64,12 @@ message CancelOrderCommand {
  *
  * OTHERS: 由于其他原因导致的下单或撤单失败。
  */
-enum OrderResultType {
-	SUCCESSFUL = 0;
-	UNSUFFICIENT = 1;
-	RISKFUL = 2;
-	OTHERS = 99;
-}
+// enum OrderResultType {
+// 	SUCCESSFUL = 0;
+// 	UNSUFFICIENT = 1;
+// 	RISKFUL = 2;
+// 	OTHERS = 99;
+// }
 
 
 
@@ -85,7 +85,8 @@ enum OrderResultType {
  * </dl>
  */
 message OrderResult {
-	OrderResultType resultType = 1;
+	//OrderResultType resultType = 1;
+	int32 code = 1;
 	string orderID = 2;
 	string externalID = 3;
 	string message = 10;
