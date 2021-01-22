@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package select.command;
+package select.commands;
 
 message StrategyStatus {
 	string name = 1;

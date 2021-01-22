@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "trade.proto";
 
-package select.command;
+package select.commands;
 
 
 option cc_generic_services = true;
